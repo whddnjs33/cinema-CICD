@@ -1,0 +1,485 @@
+/* =========================
+   Screen Detail - screen-detail.css
+   (screen-detail.html 클래스에 맞춤 / seat-wrap 방식 통일)
+========================= */
+
+/* ✅ 페이지 내용 중앙 정렬 + 적당한 폭 */
+.page-head,
+.chip-row,
+.summary-grid,
+.seat-card,
+.seat-map-card {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 상단 여백 리듬 */
+.page-head { margin-top: 4px; margin-bottom: 18px; }
+.chip-row  { margin-bottom: 18px; }
+.summary-grid { margin-bottom: 18px; }
+
+/* =========================
+   1) 상단 헤더
+========================= */
+.page-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.back-link{
+    width:40px;
+    height:40px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    border:1px solid #eef0f4;
+    background:#fff;
+    color:#111827;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:900;
+}
+
+.head-title-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex:1;
+    min-width:0;
+}
+
+.page-title{
+    margin:0;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.6px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.badge{
+    font-size:13px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid #e7eaf2;
+    background:#f3f4f6;
+    color:#374151;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.badge-on{
+    background:#e8f1ff;
+    border-color:#cfe1ff;
+    color:#2563eb;
+}
+
+.badge-off{
+    background:#fff1f2;
+    border-color:#fecdd3;
+    color:#be123c;
+}
+
+.head-action{
+    height:48px;
+    padding:0 18px;
+    border-radius:16px;
+    font-size:15px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+/* =========================
+   2) 상영 타입 칩
+========================= */
+.chip-row{
+    display:flex;
+    gap:10px;
+}
+
+.chip{
+    display:inline-flex;
+    align-items:center;
+    padding:10px 14px;
+    border-radius:999px;
+    border:1px solid #e7eaf2;
+    background:#f8fafc;
+    font-weight:900;
+    color:#334155;
+}
+
+/* =========================
+   3) 요약 카드(2개)
+========================= */
+.summary-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:16px;
+}
+
+.summary-card{
+    background:#fff;
+    border:1px solid #eef0f4;
+    border-radius:18px;
+    padding:20px 20px;
+    box-shadow: 0 8px 24px rgba(16,24,40,0.04);
+}
+
+.summary-card-blue{
+    background:#eef6ff;
+    border-color:#dbeafe;
+}
+
+.summary-label{
+    font-size:14px;
+    color:#6b7280;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.summary-value{
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.4px;
+    color:#111827;
+}
+
+.summary-card-blue .summary-value{
+    color:#2563eb;
+}
+
+/* =========================
+   4) 좌석 관리 카드(툴바 + 안내)
+========================= */
+.seat-card{
+    background:#fff;
+    border:1px solid #eef0f4;
+    border-radius:18px;
+    padding:16px;
+    box-shadow: 0 8px 24px rgba(16,24,40,0.04);
+    margin-bottom:18px;
+}
+
+.seat-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:12px;
+}
+
+.toolbar-left{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.toolbar-right{
+    display:flex;
+    align-items:center;
+}
+
+.seat-count{
+    font-size:14px;
+    color:#6b7280;
+    font-weight:700;
+}
+
+.count-strong{
+    color:#2563eb;
+    font-weight:900;
+}
+
+/* 안내 박스 */
+.seat-notice{
+    border-radius:14px;
+    border:1px solid #fde68a;
+    background:#fffbeb;
+    padding:14px 14px;
+}
+
+.notice-title{
+    font-weight:900;
+    color:#b45309;
+    margin-bottom:8px;
+}
+
+.notice-list{
+    margin:0;
+    padding-left:18px;
+    color:#92400e;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* =========================
+   5) 좌석 맵 카드 (seat-wrap 통일)
+========================= */
+.seat-map-card{
+    background:#fff;
+    border:1px solid #eef0f4;
+    border-radius:18px;
+    padding:18px;
+    box-shadow: 0 8px 24px rgba(16,24,40,0.04);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center; /* 카드 내부 중앙 */
+}
+
+.screen-bar{
+    height:8px;
+    border-radius:999px;
+    background:#111827;
+    opacity:0.7;
+    margin: 2px auto 10px;
+    width: 60%;
+}
+
+.screen-text{
+    text-align:center;
+    font-weight:900;
+    color:#6b7280;
+    letter-spacing:1px;
+    margin-bottom:16px;
+}
+
+/* 안내 바 (create와 동일) */
+.seat-info{
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    color: #475569;
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* 행 라벨 + 좌석 그리드 래퍼 */
+.seat-wrap{
+    --rows: 1;
+    --cols: 1;
+
+    /* ✅ 라벨 폭/갭을 변수로 고정 (create와 동일) */
+    --label-w: 28px;
+    --seat-w: 38px;
+    --row-h: 34px;
+    --gap: 8px;
+
+    display: grid;
+    grid-template-rows: repeat(var(--rows), var(--row-h));
+    grid-template-columns: var(--label-w) repeat(var(--cols), var(--seat-w));
+    gap: var(--gap) var(--gap);
+
+    justify-content: center;
+    align-items: center;
+
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+
+    padding: 10px 6px 18px;
+    margin: 0 auto;
+    border-bottom: 1px solid #eef2f7;
+
+    /* 🔥 핵심: "좌석 기준" 중앙정렬 보정 */
+    transform: translateX(calc((var(--label-w) + var(--gap)) / -2));
+}
+
+/* 행 라벨 */
+.row-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #334155;
+    font-size: 12px;
+}
+
+/* ✅ seat-wrap에서 쓰는 좌석 버튼 (create와 동일 크기/톤) */
+.seat.on,
+.seat.off{
+    width: 38px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
+    user-select: none;
+
+    transition: transform 0.08s ease, filter 0.08s ease;
+}
+
+.seat.on:hover,
+.seat.off:hover{
+    transform: translateY(-1px);
+    filter: brightness(0.98);
+}
+
+/* 사용 가능 */
+.seat.on{
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    box-shadow: 0 6px 10px rgba(37,99,235,0.18);
+}
+
+.seat.on:hover{
+    transform: translateY(-1px);
+    filter: brightness(0.98);
+}
+
+/* 사용 불가 */
+.seat.off{
+    background: #d1d5db;
+    border-color: #d1d5db;
+    color: #475569;
+    box-shadow: none;
+}
+
+/* 선택 표시 */
+.seat.on.seat-selected{
+    outline: 2px solid rgba(255,255,255,0.85);
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.35);
+}
+
+/* 범례(create와 동일) */
+.seat-legend{
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    align-items: center;
+}
+
+.seat-legend .legend-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    color: #475569;
+}
+
+.legend-box{
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: inline-block;
+    border: 1px solid #e5e7eb;
+}
+
+.legend-box.on{
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.legend-box.off{
+    background: #d1d5db;
+    border-color: #d1d5db;
+}
+
+/* =========================
+   6) 반응형
+========================= */
+@media (max-width: 900px){
+    .page-title{ font-size:28px; }
+    .summary-grid{ grid-template-columns: 1fr; }
+    .head-action{ height:42px; padding:0 14px; }
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal {
+    width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-body {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-body .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body .label {
+    color: #666;
+}
+
+.modal-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+/* hidden 속성은 항상 숨기기 (브라우저 기본 규칙을 CSS로 확실히 보장) */
+.modal-backdrop[hidden] {
+    display: none !important;
+}
+
+.select{
+    padding: 8px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.modal-error{
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #fff1f2;
+    color: #be123c;
+    font-size: 13px;
+}
+
+.modal-body .select {
+    width: 160px;          /* 너무 크지 않게 */
+    padding: 6px 10px;
+    font-size: 14px;
+    height: 36px;
+    border-radius: 8px;
+}

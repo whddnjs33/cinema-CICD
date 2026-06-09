@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Booking</title>
+
+    <link rel="stylesheet" href="/css/common/reset.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <link rel="stylesheet" href="/css/home/home.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div th:replace="fragments/header :: header"></div>
+
+<main class="home">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" th:if="${heroMovie != null}">
+        <img class="hero-bg"
+             th:src="${heroMovie.thumbnail != null ? heroMovie.thumbnail : '/images/default-movie.png'}"
+             alt="대표 영화">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 th:text="${heroMovie.title}">영화 제목</h1>
+            <p th:text="${heroMovie.synopsis}">한 줄 설명</p>
+
+            <div class="hero-buttons">
+                <a href="/reservations" class="btn primary">예매하기</a>
+                <a th:href="@{/movies/{id}(id=${heroMovie.id})}" class="btn ghost">상세보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= BOX OFFICE ================= -->
+    <section class="boxoffice">
+        <div class="boxoffice-header">
+            <div>
+                <h2>박스오피스</h2>
+                <span>예매율 TOP 4</span>
+            </div>
+            <a href="/movies" class="more">더 많은 영화보기 →</a>
+        </div>
+
+        <div class="movie-grid">
+            <div class="movie-card"
+                 th:each="movie, stat : ${topMovies}">
+
+                <a th:href="@{/movies/{id}(id=${movie.id})}" class="poster">
+                    <span class="rank" th:text="${stat.index + 1}">1</span>
+                    <img class="poster-img"
+                         th:src="${movie.thumbnail != null
+                 ? movie.thumbnail
+                 : '/images/default-movie.png'}">
+                </a>
+
+
+                <a href="/reservations" class="reserve-btn">예매하기</a>
+            </div>
+            <div class="movie-card placeholder"
+                 th:if="${topMovies.size() < 4}"
+                 th:each="i : ${#numbers.sequence(topMovies.size() + 1, 4)}">
+                <div class="poster empty">
+                    <span class="rank" th:text="${i}">4</span>
+                    <div class="empty-poster">
+                        준비중
+                    </div>
+                </div>
+
+                <button class="reserve-btn disabled" disabled>
+                    예매 준비중
+                </button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

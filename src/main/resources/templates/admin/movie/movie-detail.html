@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/admin-layout :: layout(
+        ${movie.title}, 'movies', ~{::pageCss}, ~{::content}
+      )}">
+
+<!-- ===== 페이지 전용 CSS ===== -->
+<th:block th:fragment="pageCss">
+    <link rel="stylesheet" th:href="@{/css/admin/movie/movie-detail.css}">
+</th:block>
+
+<!-- ===== 페이지 컨텐츠 ===== -->
+<th:block th:fragment="content">
+
+    <!-- Header -->
+    <header class="detail-header">
+        <div class="header-left">
+            <a th:href="@{/admin/movies}" class="back-btn">←</a>
+            <h1 th:text="${movie.title}"></h1>
+            <span class="status-badge"
+                  th:text="${movie.status.displayName}">
+            </span>
+        </div>
+
+        <a class="edit-btn"
+           th:href="@{/admin/movies/{id}/edit(id=${movie.id})}">
+            수정
+        </a>
+    </header>
+
+    <!-- Content -->
+    <main class="detail-container">
+
+        <section class="detail-card">
+
+            <div class="detail-grid">
+
+                <!-- Poster -->
+                <div class="poster-box poster-box--detail">
+                    <img th:src="${movie.thumbnail != null
+                            ? movie.thumbnail
+                            : '/images/default-movie.png'}"
+                         alt="포스터">
+                </div>
+
+                <!-- Info -->
+                <div class="info-area">
+
+                    <div class="info-grid">
+                        <div>
+                            <label>개봉일</label>
+                            <p th:text="${movie.releaseDate}"></p>
+                        </div>
+                        <div>
+                            <label>상영 종료일</label>
+                            <p th:text="${movie.endDate}"></p>
+                        </div>
+                        <div>
+                            <label>러닝타임</label>
+                            <p th:text="${movie.runningTimeMinutes + '분'}"></p>
+                        </div>
+                        <div>
+                            <label>관람등급</label>
+                            <p th:text="${movie.ageRating.displayName}"></p>
+                        </div>
+                    </div>
+
+                    <!-- Genre -->
+                    <div class="pill-section">
+                        <label>장르</label>
+                        <div class="pill-list">
+                            <span class="pill"
+                                  th:each="g : ${movie.genres}"
+                                  th:text="${g.displayName}">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Screening Type (연동) -->
+                    <div class="pill-section">
+                        <label>상영 타입</label>
+                        <div class="pill-list">
+                            <span class="pill pill-blue"
+                                  th:each="t : ${movie.screeningTypes}"
+                                  th:text="${t.displayName}">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Stats (하드코딩) -->
+                    <div class="stats-grid">
+                        <div>
+                            <p class="stat-label">평점</p>
+                            <p class="stat-value">9.2</p>
+                        </div>
+                        <div>
+                            <p class="stat-label">예매율</p>
+                            <p class="stat-value"
+                               th:text="${movie.advanceReservationRate != null
+                ? T(java.lang.Math).round(movie.advanceReservationRate * 10) / 10.0
+                : '-'}">
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Synopsis -->
+            <section class="synopsis">
+                <h2>영화 소개</h2>
+                <p th:text="${movie.synopsis}"></p>
+            </section>
+
+            <!-- Extra Images (비활성 / UI만 유지) -->
+            <section class="image-section">
+                <h2>추가 이미지</h2>
+
+                <div class="image-grid">
+                    <img th:each="img : ${movie.images}"
+                         th:src="${img}"
+                         alt="추가 이미지">
+                </div>
+            </section>
+
+            <div class="image-modal" id="imageModal">
+                <img id="modalImage" alt="이미지 확대 보기">
+            </div>
+
+        </section>
+
+    </main>
+    <script th:src="@{/js/admin/movie-detail.js}"></script>
+
+</th:block>
+</html>

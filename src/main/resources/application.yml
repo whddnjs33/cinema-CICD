@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: cinema
+  profiles:
+    active: local
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true  # PUT, DELETE 요청 hidden-method 지원
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 50
+    rest:
+      default-page-size: 10
+      max-page-size: 50
+
+seat-hold:
+  minutes: 5
+  redis-grace-minutes: 1
+
+logging:
+  level:
+    root: INFO
