@@ -1,0 +1,42 @@
+# Workflow name (shown in the GitHub Actions tab)
+name: CI
+
+# When to run this workflow (triggers)
+on:
+  pull_request:
+    branches: [main, dev]   # PRs opened or updated against main/develop
+  push:
+    branches: [main, dev]   # Re-verify after merge (push)
+
+jobs:
+  ci:
+    # Run on a GitHub-hosted Ubuntu runner (no server to provision)
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Setup: check out the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2) Setup: install the JDK and cache Gradle dependencies
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin   # Eclipse Temurin (safe default)
+          java-version: 21        # Match your project's version (e.g. 17)
+          cache: gradle           # Cache ~/.gradle to speed up builds
+
+      # 3) Setup: make the Gradle wrapper executable
+      #    The wrapper script may not be executable on the Linux runner
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      # 4) Verify: run the tests
+      #    A separate step makes it clear in the Actions UI where a failure happened
+      - name: Run tests
+        run: ./gradlew test
+
+      # 5) Verify: confirm the build
+      #    build also runs tests, so skip them here with -x test to avoid running twice
+      - name: Build
+        run: ./gradlew build -x test
