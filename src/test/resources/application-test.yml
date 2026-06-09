@@ -59,5 +59,5 @@ logging:
 
 toss:
   payments:
-    client-key: ${TOSS_CLIENT_KEY}
-    secret-key: ${TOSS_SECRET_KEY}
+    client-key: test-dummy-key
+    secret-key: test-dummy-key
