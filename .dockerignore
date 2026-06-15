@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+*.iml
+.gradle
+out
+*.md
+docker-compose*.yml
+application-local.yml
