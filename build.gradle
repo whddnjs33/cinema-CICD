@@ -69,6 +69,10 @@ dependencies {
 
     // 10. Health Check
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // 11. Flyway
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
 }
 
 
