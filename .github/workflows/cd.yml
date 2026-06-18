@@ -1,5 +1,5 @@
 # .github/workflows/deploy.yml
-name: Build & Deploy to ECS
+name: CD
 
 on:
   push:
