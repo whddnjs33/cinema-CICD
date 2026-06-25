@@ -2,7 +2,7 @@ spring:
   application:
     name: cinema
   profiles:
-    active: local
+    active: ${SPRING_PROFILES_ACTIVE:local}
   mvc:
     hiddenmethod:
       filter:
@@ -15,6 +15,12 @@ spring:
     rest:
       default-page-size: 10
       max-page-size: 50
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
 
 seat-hold:
   minutes: 5

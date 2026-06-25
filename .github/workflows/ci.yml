@@ -5,11 +5,9 @@ name: CI
 on:
   pull_request:
     branches: [main, dev]   # PRs opened or updated against main/develop
-  push:
-    branches: [main, dev]   # Re-verify after merge (push)
 
 jobs:
-  ci:
+  test:
     # Run on a GitHub-hosted Ubuntu runner (no server to provision)
     runs-on: ubuntu-latest
 
@@ -32,11 +30,30 @@ jobs:
         run: chmod +x ./gradlew
 
       # 4) Verify: run the tests
-      #    A separate step makes it clear in the Actions UI where a failure happened
       - name: Run tests
         run: ./gradlew test
 
-      # 5) Verify: confirm the build
-      #    build also runs tests, so skip them here with -x test to avoid running twice
+  build:
+    # Only starts after the test job succeeds.
+    # Also shows up as its own separate status check on the PR.
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Each job runs on a brand-new runner, so checkout/setup repeat here
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      # build also runs tests, so skip them here with -x test to avoid running twice
       - name: Build
         run: ./gradlew build -x test

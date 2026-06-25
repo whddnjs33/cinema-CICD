@@ -54,6 +54,7 @@ dependencies {
     // 7. Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.h2database:h2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // 8. QueryDSL
@@ -67,6 +68,12 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'  // Lombok + MapStruct 충돌 방지
 
+    // 10. Health Check
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // 11. Flyway
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
 }
 
 
@@ -76,6 +83,15 @@ def querydslDir = "build/generated/querydsl"
 // 생성된 Q 소스를 main 소스로 인식시키기
 sourceSets {
     main.java.srcDirs += querydslDir
+}
+
+// plain JAR 생성하지 않기
+jar {
+    enabled = false
+}
+
+bootJar {
+    archiveFileName = 'app.jar'
 }
 
 // 컴파일 시 Q 클래스 생성 위치 지정
