@@ -20,7 +20,7 @@ spring:
       timeout: 3s
 
   session:
-    store-type: none
+    store-type: redis
 
 toss:
   payments:
