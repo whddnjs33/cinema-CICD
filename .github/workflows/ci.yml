@@ -3,6 +3,7 @@ name: CI
 
 # When to run this workflow (triggers)
 on:
+  push:
   pull_request:
     branches: [main, dev]   # PRs opened or updated against main/develop
 
